@@ -1,6 +1,7 @@
 setwd("~/Dropbox/MSc BDS/Thesis/Code/Janine_Thesis")
-library(ggplot2)
-# TODO extend it to more than two variables
+
+# load packages
+if (!require("ggplot2")) install.packages("ggplot2")
 if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("BART")) install.packages("BART")
 if (!require("randomForestSRC")) install.packages("randomForestSRC")

@@ -12,6 +12,8 @@ source('data_generation_fcts_V2.R')
 source('evaluation_fcts.R')
 source('visualisation.R')
 
+data_path = "../Thesis/Code/Janine_Thesis/"
+
 
 n = 100000
 iter = 5

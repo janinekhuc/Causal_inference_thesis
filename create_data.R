@@ -1,4 +1,5 @@
 # new file to create data
+source(helper.R)
 
 sample_data <- function(csv_file, n, hidden = FALSE, prev_hidden = 0.2){
   
@@ -17,8 +18,7 @@ sample_data <- function(csv_file, n, hidden = FALSE, prev_hidden = 0.2){
   # extract subset
   med = c("J01MA02", "J01XE01")
   df_subset = df_original %>% filter(grepl(paste(med, collapse="|"), X0_atc))
-  columns_to_remove = c(names(df_subset)[1:14],"X0_id_client_ozps", "X0_laatste")
-  df_subset = df_subset %>% select(-one_of(columns_to_remove))
+  df_subset = df_subset %>% select(-one_of(remove_from_df))
   
   if(hidden == FALSE){
     X = sample(df_subset, n, replace = TRUE) 

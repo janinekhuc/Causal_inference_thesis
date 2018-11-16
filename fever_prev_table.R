@@ -1,14 +1,14 @@
 data_path = "../Thesis/Code/Janine_Thesis/"
 
 # load data
-df_original = read.csv(paste0(data_path, "170831_dfmodel.csv"), sep = ";")
+df_original = read.csv(paste0(data_path, "170831_dfmodel.csv"), sep = ";", check.names = FALSE)
 
 # extract rows that either received J01MA02- Cipro or J01XE01- Nitro, 
 med = c("J01MA02", "J01XE01")
-df_subset = df_original %>% filter(grepl(paste(med, collapse="|"), X0_atc))
+df_subset = filter(grepl(paste(med, collapse="|"), df_original$`0_atc`))
 
 # remove values not required & without outcome/ treatment assignement
-columns_to_remove = c(names(df_subset)[1:14], "X0_id_client_ozps", "X0_laatste")
+columns_to_remove = c(names(df_subset)[1:14], "0_id_client_ozps", "0_laatste")
 df_subset = df_subset %>% select(-one_of(columns_to_remove))
 
 fever_var = df_subset %>%  select(matches("zwanger|diabetes|

@@ -1,0 +1,8 @@
+12th Nov 18
+- first set up for uti simulation
+- create data & hidden confounding with different proportions
+- running UTI model to extract coefficents for outcome model
+
+13th Nov 18
+- running UTI model to extract treatment asisgnment coefficients
+- 

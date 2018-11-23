@@ -1,22 +1,19 @@
-setwd("~/Dropbox/MSc BDS/Thesis/Code/Janine_Thesis")
-
-# load packages
-if (!require("ggplot2")) install.packages("ggplot2")
-if (!require("tidyverse")) install.packages("tidyverse")
-if (!require("BART")) install.packages("BART")
-if (!require("randomForestSRC")) install.packages("randomForestSRC")
-if (!require("randomForest")) install.packages("randomForest")
-
 # functions
-source('data_generation_fcts_V2.R')
-source('evaluation_fcts.R')
-source('visualisation.R')
+source("create_data.R")
+source('helper.R')
+source('evaluation_functions.R')
+source('HTE_estimation.R')
 
+data_path = "../Thesis/Code/Janine_Thesis/"
 
 n = 100000
 iter = 5
 ws_name = paste0('uti_', iter, '_', n)
+
+# values hidden confunders
 hidden_status = FALSE # can be either true or false
+prev_hidden_conf = 0.2 # can take on any value between 0 and 1
+
 
 # prestimulation ------------------
 # create tables to save results
@@ -27,13 +24,14 @@ create_results_tbl(iter = iter)
 for(i in 1:iter){
   set.seed(1 + i)
   
-  X = sample_data("170831_dfmodel.csv", n)
+  #  sample features X
+  X = sample_data("170831_dfmodel.csv", n, hidden_status, prev_hidden_conf)
   
   # create treatment assignment
   z = create_z(hidden_status)
   
   # create outcome
-  
+  # should return list: y0_true, y1_true, y_obs, tau_true
   
   
   # dataframe
